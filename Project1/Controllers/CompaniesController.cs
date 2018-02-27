@@ -16,15 +16,58 @@ namespace Project1.Controllers
         private WebAppEntities db = new WebAppEntities();
 
         // GET: Companies
-        public ActionResult Index(int? page, string searchString)
+        public ActionResult Index(int? page, string searchString, string categories, string locs)
         {
             if (Session["UserId"] != null)
             {
+                var CatLst = new List<string>();
+                var CatQry = from c in db.Companies
+                             orderby c.CompCat
+                             select c.CompCat;
+                CatLst.AddRange(CatQry.Distinct());
+                ViewBag.categories = new SelectList(CatLst);
+
+                var YoeLst = new List<string>();
+                var YoeQry = from c in db.Companies
+                             orderby c.CompDOE
+                             select c.CompDOE;
+                var YoeStr = new List<string>();
+
+                foreach (DateTime dt in YoeQry)
+                    YoeStr.Add(Convert.ToDateTime(dt.ToString()).Year.ToString());
+
+                YoeLst.AddRange(YoeStr.Distinct());
+                ViewBag.yoes = new SelectList(YoeLst);
+
+                var LocLst = new List<string>();
+                var LocQry = from c in db.Companies
+                             orderby c.CompAddr
+                             select c.CompAddr;
+                LocLst.AddRange(LocQry.Distinct());
+                ViewBag.locs = new SelectList(LocLst);
+
                 var comps = from c in db.Companies select c;
                 if (!String.IsNullOrEmpty(searchString))
                 {
-                    comps = comps.Where(c => c.CompName.Contains(searchString));
+                    comps = comps.Where(c => c.CompName.Contains(searchString));                    
                 }
+
+                if (!string.IsNullOrEmpty(categories))
+                {
+                    comps = comps.Where(x => x.CompCat == categories);
+                }
+                /*
+                if (!string.IsNullOrEmpty(yoes))
+                {
+                    comps = comps.Where(x => Convert.ToDateTime(x.CompDOE).Year.ToString() == yoes);
+                }
+                */
+                if (!string.IsNullOrEmpty(locs))
+                {
+                    comps = comps.Where(x => x.CompAddr.Contains(locs));
+                }
+
+                //result.Distinct();
                 int pageNum = (page ?? 1);
                 var onePage = comps.OrderBy(i => i.CompId).ToPagedList(pageNum, 12);
 
