@@ -16,15 +16,19 @@ namespace Project1.Models
     {
         [Key]
         public int UserId { get; set; }
-        [Required(ErrorMessage ="Username is required.")]
+        [Display(Name = "Username")]
+        [Required(ErrorMessage = "Username is required.")]
         public string UserName { get; set; }
-        [Required(ErrorMessage ="Email is required.")]
+        [Display(Name = "Email")]
+        [Required(ErrorMessage = "Email is required.")]
         [RegularExpression(@"^([\w-\.]+)@((\[[0-9]{1,3]\.)|(([\w-]+\.)+))([a-zA-Z{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Please enter valid email.")]
         public string UserEmail { get; set; }
-        [Required(ErrorMessage ="Password is required.")]
+        [Display(Name = "Password")]
+        [Required(ErrorMessage = "Password is required.")]
         [DataType(DataType.Password)]
         public string UserPassword { get; set; }
-        [Required(ErrorMessage ="Please select one role")]
+        [Display(Name = "Role")]
+        [Required(ErrorMessage = "Please select one role")]
         public string UserRole { get; set; }
     }
 }

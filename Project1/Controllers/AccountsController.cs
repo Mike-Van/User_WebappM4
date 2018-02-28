@@ -66,9 +66,10 @@ namespace Project1.Controllers
                 Session["UserId"] = acc.UserId.ToString();
                 Session["UserName"] = acc.UserName.ToString();
                 Session["UserRole"] = acc.UserRole.ToString();
-                ModelState.Clear();                
+                ModelState.Clear();
+                return RedirectToAction("Index", "Home");
             }
-            return RedirectToAction("Index", "Home");
+            return View(acc);
         }
         
         public ActionResult Login()
