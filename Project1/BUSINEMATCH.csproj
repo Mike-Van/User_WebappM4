@@ -197,6 +197,7 @@
     <Content Include="Content\custom.css" />
     <Content Include="Content\dashboard.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Dummy Data\avatar.png" />
     <Content Include="Dummy Data\coca-cola-logo-260x260.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

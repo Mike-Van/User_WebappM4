@@ -22,14 +22,23 @@
 
     <!-- Custom styles for this template -->
     <link href="../../Content/dashboard.css" rel="stylesheet">
+    <link href="../../Content/custom.css" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">BUSINEMATCH</a>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="@Url.Action("Index", "Home")">BUSINEMATCH</a>
         <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-                @Html.ActionLink("Hello " + Session["UserName"].ToString() + "!", "Details", "Accounts", new { id = int.Parse(Session["UserId"].ToString()) }, htmlAttributes: new { title = "Logged in as " + Session["UserName"].ToString(), @class = "nav-link" })
-            </li>            
+            
+            <li>
+                <div class="chip">
+                    <a href="@Url.Action("Details", "Accounts", new { id = int.Parse(Session["UserId"].ToString()) })" title="Logged in as @Session["UserName"].ToString()">
+                        @Session["UserName"].ToString()
+                        <img src="~/Dummy Data/avatar.png" alt="Person" width="96" height="96">
+                    </a>
+                    <a class="closebtn" href="javascript:document.getElementById('logoutForm').submit()" title="Logout">&times;</a>
+
+                </div>
+            </li>
 
         </ul>
     </nav>
