@@ -27,7 +27,7 @@
 <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="@Url.Action("Index", "Home")">BUSINEMATCH</a>
-        <ul class="navbar-nav px-3">
+        <ul class="navbar-nav px-3">    
             
             <li>
                 <div class="chip">
@@ -73,6 +73,7 @@
                                         @Html.DropDownList("categories", (IEnumerable<SelectListItem>)ViewBag.categories, "Any", new { @class = "form-control"})
                                     </div>                                    
                                 </div><br/>
+                                <!--
                                 <div>
                                     <h6>
                                         <span data-feather="calendar"></span>
@@ -82,6 +83,7 @@
                                         @Html.DropDownList("yoes", (IEnumerable<SelectListItem>)ViewBag.yoes, "Any", new { @class = "form-control" })
                                     </div>
                                 </div><br/>
+                                    -->
                                 <div>
                                     <h6>
                                         <span data-feather="map-pin"></span>
@@ -119,7 +121,7 @@
             </nav>
 }
             </div>
-            @Html.PagedListPager((IPagedList)ViewBag.onePage, page => Url.Action("Index", new { page }))
+            @Html.PagedListPager((IPagedList)ViewBag.onePage, page => Url.Action("Index", new { page, @class="pagination" }))
             <div class="pt-3 pb-2">
                 <!--Buttons-->
                 <!--

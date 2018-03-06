@@ -2,86 +2,169 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = null;
 }
-<div class="container">
-    <h2>Details</h2>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <div>
-        <h4>Company</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.CompImg)
-            </dt>
+    <title>BUSINEMATCH</title>
+    <link rel="icon" href="~/Dummy Data/icon.png">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-            <dd>
-                <img src='@Url.Action( "Show", "Companies", new { id = Model.CompId } )' height="200" width="200" />
-            </dd>
+    <!-- Custom styles for this template -->
+    <link href="~/Content/CustomDetails.css" rel="stylesheet">
+    <link href="~/Content/dashboard.css" rel="stylesheet">
+</head>
+<body>
+    
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="@Url.Action("Index", "Home")">
+            <img src="~/Dummy Data/icon.png" alt="logo" style="width:3  0px; height:30px">
+            BUSINEMATCH
+        </a>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-white">
+                <a href="@Url.Action("Details", "Accounts", new { id = int.Parse(Session["UserId"].ToString()) })" title="Logged in as @Session["UserName"].ToString()" class="text-white">@Session["UserName"].ToString() <img src="~/Dummy Data/avatar.png" alt="Person" width="50" height="50"></a>
+                <a class="closebtn" href="javascript:document.getElementById('logoutForm').submit()" title="Logout">&times;</a>
+                
+            </li>
+        </ul>
+    </nav> 
+    
 
-            <dt>
-                @Html.DisplayNameFor(model => model.CompName)
-            </dt>
+    <div class="cover">
+        <img class="headerImg" src="~/Dummy Data/officialcover.gif" alt="HeaderImage">
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-lg-12 pt-2 text-center">
+                <img class="rounded-circle" src="@Url.Action( "Show", "Companies", new { id = Model.CompId } )"
+                     alt="Generic placeholder image" width="300" height="300">
+                <div class="pt-2">
+                    <h2>@Model.CompName</h2>
+                    <h3>@Model.CompCat</h3>
+                </div>
+            </nav>
+        </div>
+        <div class="row pt-5 pb-5 pl-5">
+            <div class="pb-5">
+                <div class="col-lg-3 card" style="display:inline-block">
+                    <img class="rep-img" src="~/Dummy Data/Dummy.jpg" alt="John">
+                    <h1><b>@Model.CompRep</b></h1>
+                    <p class="title">Representative</p>
+                    <p><i>@Model.CompName</i></p>
+                    <p><button class="Contactbutton">Contact</button></p>
+                </div>
+            </div>
 
-            <dd>
-                @Html.DisplayFor(model => model.CompName)
-            </dd>
+            <div class="col-lg-10 pl-5">
+                <nav class="pt-3 pr-3 pl-3 detail-info">
+                    <p>
+                        <i>
+                            <b>@Model.CompName</b> @Html.Raw(Model.CompDesc)
+                        </i>
+                    </p>
+                    <p><b>Founded:</b> @Model.CompDOE</p>
+                    <p><b>Email:</b> @Model.CompEmail</p>
+                    <p><b>Contact:</b> @Model.CompCont</p>
+                    <p><b>Address:</b>@Model.CompAddr</p>
+                </nav>
+            </div>
+        </div>
+        <!--
+        <div class="similar-suggest-title" style="display:inline-block; margin: 0 auto">
+            <h4 class="text-center pt-1 pl-2 pr-2" style="font-family:HeaderFont">
+                <span style="width:20px; height:30px" class="pb-1" data-feather="search"></span>
+                People also check
+            </h4>
+        </div> -->
+        <!-- Randomly select 6 related companies to display-->
+        <!--
+                <nav class="col-lg-12 similar-suggest pt-3 text-center">
+                    <div class="row">
+                        <nav class="col-lg-2 item">
+                            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                 alt="Generic placeholder image" width="160" height="160">
+                            <h4>Microsoft</h4>
+                            <h5>Technology</h5>
+                        </nav>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.CompRep)
-            </dt>
+                        <nav class="col-lg-2 item">
+                            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                 alt="Generic placeholder image" width="160" height="160">
+                            <h4>Apple Inc.</h4>
+                            <h5>Technology</h5>
+                        </nav>
 
-            <dd>
-                @Html.DisplayFor(model => model.CompRep)
-            </dd>
+                        <nav class="col-lg-2 item">
+                            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                 alt="Generic placeholder image" width="160" height="160">
+                            <h4>Samsung</h4>
+                            <h5>Technology</h5>
+                        </nav>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.CompDOE)
-            </dt>
+                        <nav class="col-lg-2 item">
+                            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                 alt="Generic placeholder image" width="160" height="160">
+                            <h4>Huawei</h4>
+                            <h5>Technology</h5>
+                        </nav>
 
-            <dd>
-                @Html.DisplayFor(model => model.CompDOE)
-            </dd>
+                        <nav class="col-lg-2 item">
+                            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                 alt="Generic placeholder image" width="160" height="160">
+                            <h4>Nokia</h4>
+                            <h5>Technology</h5>
+                        </nav>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.CompAddr)
-            </dt>
+                        <nav class="col-lg-2 item">
+                            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                 alt="Generic placeholder image" width="160" height="160">
+                            <h4>Microsoft</h4>
+                            <h5>Technology</h5>
+                        </nav>
+                    </div>
+                </nav>
+        -->
+        <br>
 
-            <dd>
-                @Html.DisplayFor(model => model.CompAddr)
-            </dd>
+        <div class="container-fluid" id="footer">
+            <hr />
+            <div class="row">
+                <nav class="col-lg-4">
+                    <p class="float-md-left">&copy; 2017-2018 BUSINEMATCH, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+                </nav>
+                <nav class="col-lg-4 text-center">
+                    <p><a href="#"><img src="~/Dummy Data/icon.png" style="width:42px; height:42px;"></a></p>
+                </nav>
+                <nav class="col-lg-4">
+                    <p class="float-md-right"><a href="#"><span style="width:40px; height:40px" data-feather="arrow-up-circle"></span></a></p>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <br>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.CompCat)
-            </dt>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-            <dd>
-                @Html.DisplayFor(model => model.CompCat)
-            </dd>
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+        feather.replace()
+    </script>
+</body>
+</html>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.CompEmail)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.CompEmail)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.CompCont)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.CompCont)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.CompDesc)
-            </dt>
-
-            <dd>
-                @Html.Raw(Model.CompDesc);
-            </dd>
-
-        </dl>
-    </div>    
-</div>

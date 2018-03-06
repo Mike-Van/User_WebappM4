@@ -59,7 +59,7 @@ namespace Project1.Controllers
                 /*
                 if (!string.IsNullOrEmpty(yoes))
                 {
-                    comps = comps.Where(x => Convert.ToDateTime(x.CompDOE).Year.ToString() == yoes);
+                    comps = comps.Where(x => Convert.ToString(DateTime.Parse(x.CompDOE.ToString()).Year == yoes);
                 }
                 */
                 if (!string.IsNullOrEmpty(locs))
