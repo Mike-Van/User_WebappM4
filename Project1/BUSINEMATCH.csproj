@@ -181,6 +181,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserAccount.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -259,6 +262,9 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Fonts\Lato-Italic.ttf" />
+    <Content Include="Fonts\Lato-Regular.ttf" />
+    <Content Include="Fonts\LemonMilk.otf" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -266,9 +272,6 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Fonts\Lato-Italic.ttf" />
-    <Content Include="Fonts\Lato-Regular.ttf" />
-    <Content Include="Fonts\LemonMilk.otf" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\holder.min.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
