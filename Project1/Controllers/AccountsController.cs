@@ -55,7 +55,7 @@ namespace Project1.Controllers
         [HttpPost]
         public ActionResult Register(UserAccount acc)
         {
-            acc.UserRole = "user";
+            //acc.UserRole = "user";
             if (ModelState.IsValid)
             {
                 using (WebAppEntities db = new WebAppEntities())

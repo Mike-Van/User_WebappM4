@@ -15,6 +15,10 @@ namespace Project1.Models
 
     public partial class UserAccount
     {
+        public UserAccount()
+        {
+            UserRole = "user";
+        }
         [Key]
         public int UserId { get; set; }
         [Display(Name = "Username")]
